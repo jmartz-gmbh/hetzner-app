@@ -25,17 +25,17 @@ export default {
 </script>
 
 <template>
-  <div id="app" class="px-2 py-2">
-    <header class="mx-auto max-w-5xl my-2">
+  <div class="px-2 py-2 bg-gray-400">
+    <header class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
       <header-mobile></header-mobile>
       <header-tablet></header-tablet>
       <header-desktop></header-desktop>
     </header>
-    <main class="mx-auto max-w-5xl my-2 min-h-screen">
+    <main class="mx-auto max-w-5xl my-2 min-h-screen bg-white px-2 py-2">
       <messages></messages>
       <router-view></router-view>
     </main>
-    <footer class="mx-auto max-w-5xl my-2">Footer</footer>
+    <footer class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">Footer</footer>
   </div>
 </template>
 

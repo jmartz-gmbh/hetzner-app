@@ -1,9 +1,11 @@
 <template>
   <div class="tab-datacenters">
     <div class="settings-servers mt-3">
-      <h2 class="text-lg">
-        Datacenters
-        <button @click.prevent="loadDatacenters()">load</button>
+      <h2 class="flex justify-between my-2 px-2">
+        <span class="font-bold text-lg ">Datacenters</span>
+        <button @click.prevent="loadDatacenters()">
+          <font-awesome-icon icon="rotate" />
+        </button>
       </h2>
       <table>
         <tr>
@@ -12,7 +14,7 @@
           <th>Beschreibung</th>
           <th>Location Id</th>
         </tr>
-        <tr v-for="(typ, index) in datacenters">
+        <tr v-for="(typ, index) in this.$store.state.datacenters.items">
           <td>{{ typ.id }}</td>
           <td>{{ typ.name }}</td>
           <td>{{ typ.description }}</td>
@@ -36,28 +38,11 @@ export default {
     },
   },
   mounted() {
-    let datacenters = JSON.parse(localStorage.getItem("datacenters"));
-    if (datacenters == null) {
-      this.loadDatacenters();
-    } else {
-      this.datacenters = datacenters;
-    }
+    this.$store.commit("datacenters-load", this);
   },
   methods: {
     loadDatacenters: function () {
-      const that = this;
-      fetch("https://api.hetzner.cloud/v1/datacenters", {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          that.datacenters = data.datacenters;
-          localStorage.setItem("datacenters", JSON.stringify(data.datacenters));
-        });
+      this.$store.commit("datacenters-load", this);
     },
   },
 };

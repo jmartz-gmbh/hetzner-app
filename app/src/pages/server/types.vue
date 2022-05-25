@@ -1,9 +1,9 @@
 <template>
   <div class="vc-tab-server-types">
     <div class="settings-servers mt-3">
-      <h2 class="text-lg">
-        Servers Types
-        <button @click.prevent="loadServers()">load</button>
+      <h2 class="flex justify-between my-2 px-2">
+         <span class="font-bold text-lg">Server Types</span>
+        <button @click.prevent="loadServers()"><font-awesome-icon icon="rotate"/></button>
       </h2>
       <table>
         <tr>
@@ -13,7 +13,7 @@
           <th>Disk</th>
           <th>Prices</th>
         </tr>
-        <tr v-for="(typ, index) in server_types">
+        <tr v-for="(typ, index) in $store.state.server_types.items">
           <td>{{ typ.name }}</td>
           <td>{{ typ.cores }}</td>
           <td>{{ typ.memory }}</td>
@@ -33,38 +33,13 @@
 <script>
 export default {
   name: "TabServerTypes",
-  data(){
-return {
-    server_types: []
-}
-  },
-  computed: {
-    token: function () {
-      return localStorage.getItem("token");
-    },
+  data() {
+    return {
+      server_types: [],
+    };
   },
   mounted() {
-    this.server_types = JSON.parse(localStorage.getItem("server_types"));
-  },
-  methods: {
-    loadServers: function () {
-      const that = this;
-      fetch("https://api.hetzner.cloud/v1/server_types", {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          that.server_types = data.server_types;
-          localStorage.setItem(
-            "server_types",
-            JSON.stringify(data.server_types)
-          );
-        });
-    },
+    this.$store.commit("server-types-load", this);
   },
 };
 </script>

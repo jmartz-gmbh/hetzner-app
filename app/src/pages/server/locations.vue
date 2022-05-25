@@ -1,9 +1,9 @@
 <template>
   <div class="tab-locations">
     <div class="settings-servers mt-3">
-      <h2 class="text-lg">
-        Locations
-        <button @click.prevent="loadLocations()">load</button>
+      <h2 class="flex justify-between my-2 px-2">
+         <span class="font-bold text-lg">Locations</span>
+        <button @click.prevent="loadLocations()"><font-awesome-icon icon="rotate"/></button>
       </h2>
       <table>
         <tr>
@@ -12,7 +12,7 @@
           <th>Beschreibung</th>
           <th>Land</th>
         </tr>
-        <tr v-for="(typ, index) in locations">
+        <tr v-for="(typ, index) in $store.state.locations.items">
           <td>{{ typ.id }}</td>
           <td>{{ typ.name }}</td>
           <td>{{ typ.description }}</td>
@@ -36,29 +36,7 @@ export default {
     },
   },
   mounted() {
-    let locations = JSON.parse(localStorage.getItem("locations"));
-    if (locations == null) {
-      this.loadLocations();
-    } else {
-      this.locations = locations;
-    }
-  },
-  methods: {
-    loadLocations: function () {
-      const that = this;
-      fetch("https://api.hetzner.cloud/v1/locations", {
-        headers: {
-          Authorization: "Bearer " + this.token,
-        },
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          that.locations = data.locations;
-          localStorage.setItem("locations", JSON.stringify(data.locations));
-        });
-    },
+    this.$store.commit('locations-load', this);
   },
 };
 </script>
