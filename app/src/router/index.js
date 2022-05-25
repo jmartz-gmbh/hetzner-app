@@ -11,9 +11,11 @@ import ServerVolumes from "../pages/server/volumes.vue";
 import ServerNetworks from "../pages/server/networks.vue";
 import ServerLoadBalancers from "../pages/server/load_balancers.vue";
 import Settings from "../pages/settings.vue";
+import Impressum from "../pages/impressum.vue";
 
 const routes = [
   { path: "/", component: Home },
+  { path: "/impressum", component: Impressum },
   {
     path: "/server/:id",
     component: Server,

@@ -1,6 +1,9 @@
 <template>
   <div class="WelcomeScreen">
-    <div v-if="servers === false" class="welcome-form block text-center mt-5">
+    <div
+      v-if="$store.state.servers.items === false"
+      class="welcome-form block text-center mt-5"
+    >
       <h2 class="text-lg bg-gray-300 px-2 py-2 border border-black">
         Add your Project Token under
         <router-link to="/settings" class="text-blue-400">Settings</router-link>
@@ -23,7 +26,7 @@
           <div class="col col-span-12 md:col-span-2">Actions</div>
         </div>
         <div
-          v-for="(server, index) in servers"
+          v-for="(server, index) in $store.state.servers.items"
           :key="index"
           class="row grid grid-cols-12 px-2 py-2"
         >
@@ -108,36 +111,12 @@ export default {
           });
       }
     },
-    save: function (token) {
-      this.token = token;
-      localStorage.setItem("token", token);
-      this.loadServers(token);
-    },
-    loadServers: function (value) {
-      fetch("https://api.hetzner.cloud/v1/servers", {
-        headers: {
-          Authorization: "Bearer " + value,
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          if (data.servers) {
-            this.servers = data.servers;
-            data.servers.map(function (item) {
-              localStorage.setItem("server-" + item.id, JSON.stringify(item));
-            });
-          }
-        });
+    loadServers: function () {
+      this.$store.commit("servers-load", this);
     },
   },
   mounted() {
-    const token = localStorage.getItem("token");
-    if (token) {
-      this.token = token;
-      this.save(token);
-    }
+    this.loadServers();
   },
 };
 </script>
