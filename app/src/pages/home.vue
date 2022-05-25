@@ -1,14 +1,7 @@
 <template>
   <div class="WelcomeScreen">
-    <div v-if="servers === false" class="welcome-form">
-      <h2>Enter Access Token</h2>
-      <div class="form-group">
-        <label>Access Token</label>
-        <input v-model="token" name="token" />
-      </div>
-      <div class="form-button">
-        <button @click.prevent="save(token)">Senden</button>
-      </div>
+    <div v-if="servers === false" class="welcome-form block text-center mt-5">
+      <h2 class="text-lg bg-gray-300 px-2 py-2 border border-black">Add your Project Token under <router-link to="/settings" class="text-blue-400">Settings</router-link></h2>
     </div>
     <div v-else class="">
       <h2>

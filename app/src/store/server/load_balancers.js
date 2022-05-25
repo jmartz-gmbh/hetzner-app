@@ -3,16 +3,16 @@ export default {
     items: [],
   }),
   mutations: {
-    "server-typ-add": function (state, item) {
+    "load-balancer-add": function (state, item) {
       state.items.push(item);
     },
-    "server-types-reset": function (state) {
+    "load-balancers-reset": function (state) {
       state.items = [];
     },
-    "server-types-load": function (state, that) {
+    "load-balancers-load": function (state, that) {
       that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
-        fetch("https://api.hetzner.cloud/v1/server_types", {
+        fetch("https://api.hetzner.cloud/v1/load_balancers", {
           headers: {
             Authorization: "Bearer " + that.$store.state.token.auth,
           },
@@ -22,12 +22,12 @@ export default {
           })
           .then(function (data) {
             state.items = [];
-            for (let i = 0; i < data.server_types.length; i++) {
-              state.items.push(data.server_types[i]);
+            for (let i = 0; i < data.load_balancers.length; i++) {
+              state.items.push(data.load_balancers[i]);
             }
             localStorage.setItem(
-              "server_types",
-              JSON.stringify(data.server_types)
+              "load_balancers",
+              JSON.stringify(data.load_balancers)
             );
           });
       }

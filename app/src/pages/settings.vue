@@ -56,7 +56,7 @@
       <div class="grid grid-cols-4 text-center mt-2 gap-2">
         <div class="col-span-2 md:col-span-1">
           <router-link
-            to="/settings/ssh-keys"
+            to="/settings/keys"
             class="bg-gray-500 text-white border border-black block px-2 py-2"
             >SSH Keys</router-link
           >

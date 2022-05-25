@@ -3,16 +3,16 @@ export default {
     items: [],
   }),
   mutations: {
-    "server-typ-add": function (state, item) {
+    "ssh-key-add": function (state, item) {
       state.items.push(item);
     },
-    "server-types-reset": function (state) {
+    "ssh-keys-reset": function (state) {
       state.items = [];
     },
-    "server-types-load": function (state, that) {
+    "ssh-keys-load": function (state, that) {
       that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
-        fetch("https://api.hetzner.cloud/v1/server_types", {
+        fetch("https://api.hetzner.cloud/v1/ssh_keys", {
           headers: {
             Authorization: "Bearer " + that.$store.state.token.auth,
           },
@@ -22,12 +22,12 @@ export default {
           })
           .then(function (data) {
             state.items = [];
-            for (let i = 0; i < data.server_types.length; i++) {
-              state.items.push(data.server_types[i]);
+            for (let i = 0; i < data.ssh_keys.length; i++) {
+              state.items.push(data.ssh_keys[i]);
             }
             localStorage.setItem(
-              "server_types",
-              JSON.stringify(data.server_types)
+              "ssh_keys",
+              JSON.stringify(data.ssh_keys)
             );
           });
       }
