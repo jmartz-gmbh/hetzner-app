@@ -1,0 +1,24 @@
+<template>
+  <div class="vc-header">
+    <div v-if="show" class="header-mobile flex justify-between">
+      <div class="logo">Hetzner Cloud App</div>
+      <div class="nav space-x-2">
+        <router-link to="/">Home</router-link>
+        <router-link to="/settings">Settings</router-link>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "Header",
+  computed: {
+    show: function () {
+      if (window.innerWidth < 768) {
+        return true;
+      }
+      return false;
+    },
+  },
+};
+</script>
