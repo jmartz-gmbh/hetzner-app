@@ -59,6 +59,22 @@
             >
               <font-awesome-icon icon="rotate" />
             </button>
+            <button
+              v-if="!server.protection.delete"
+              @click="toogleSecureServer(server.id)"
+              class="border border-black px-2 py-2 w-10 h-10"
+              title="Secure Server"
+            >
+              <font-awesome-icon icon="lock" />
+            </button>
+            <button
+              v-if="server.protection.delete"
+              @click="toogleUnsecureServer(server.id)"
+              class="border border-black px-2 py-2 w-10 h-10"
+              title="Secure Server"
+            >
+              <font-awesome-icon icon="lock-open" />
+            </button>
           </div>
         </div>
       </div>
@@ -77,38 +93,22 @@ export default {
   methods: {
     rebootServer: function (id) {
       if (confirm("Do you want to Restart the Server ?")) {
-        fetch(
-          "https://api.hetzner.cloud/v1/servers/" + id + "/actions/reboot",
-          {
-            method: "POST",
-            headers: {
-              Authorization: "Bearer " + this.token,
-            },
-          }
-        )
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            this.$router.go();
-          });
+        this.$store.commit("server-reboot", { that: this, id });
       }
     },
     deleteServer: function (id) {
       if (confirm("Do you want to Delete the Server ?")) {
-        fetch("https://api.hetzner.cloud/v1/servers/" + id, {
-          method: "DELETE",
-          headers: {
-            Authorization: "Bearer " + this.token,
-          },
-        })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            this.$router.go();
-          });
+        this.$store.commit("server-delete", { that: this, id });
+      }
+    },
+    toogleSecureServer: function (id) {
+      if (confirm("Do you want to Secure the Server ?")) {
+        this.$store.commit("server-secure", { that: this, id });
+      }
+    },
+    toogleUnsecureServer: function (id) {
+      if (confirm("Do you want to Secure the Server ?")) {
+        this.$store.commit("server-unsecure", { that: this, id });
       }
     },
     loadServers: function () {
