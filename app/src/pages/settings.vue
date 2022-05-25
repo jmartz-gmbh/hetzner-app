@@ -28,7 +28,7 @@
           <router-link
             to="/settings/types"
             class="bg-gray-500 text-white border border-black block px-2 py-2"
-            >Servers</router-link
+            >Types</router-link
           >
         </div>
         <div class="col-span-2 md:col-span-1">

@@ -26,7 +26,7 @@ export default {
               state.items.push(data.datacenters[i]);
             }
             localStorage.setItem(
-              "server_types",
+              "datacenters",
               JSON.stringify(data.datacenters)
             );
           });

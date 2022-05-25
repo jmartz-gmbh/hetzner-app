@@ -21,6 +21,7 @@ export default {
         status: "warning",
         message: "Dies ist keine Offizielle Webseite der Hetzner GmbH",
       });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     },
   },
 };

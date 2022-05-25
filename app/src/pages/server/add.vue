@@ -36,7 +36,7 @@
         </select>
       </div>
 
-      <button @click="createServer()">create</button>
+      <button @click="createServer()" class="px-2 py-2 bg-gray-300 border border-black">create</button>
     </div>
   </div>
 </template>
