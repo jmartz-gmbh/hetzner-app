@@ -31,8 +31,8 @@
 
       <div class="form-group">
         <label>Server SSH Keys</label>
-        <select v-model="ssh_keys">
-          <option>test</option>
+        <select v-model="key">
+          <option v-for="(k, index) in ssh_keys">{{ k.name }}</option>
         </select>
       </div>
 
@@ -49,7 +49,7 @@ export default {
       name: "",
       server_type: "",
       location: "",
-      ssh_keys: [],
+      key: '',
       image: "",
     };
   },
@@ -62,6 +62,9 @@ export default {
     },
     images: function () {
       return JSON.parse(localStorage.getItem("images"));
+    },
+    ssh_keys: function () {
+      return JSON.parse(localStorage.getItem("ssh_keys"));
     },
     locations: function () {
       return JSON.parse(localStorage.getItem("locations"));
@@ -79,7 +82,7 @@ export default {
           name: this.name,
           server_type: this.server_type,
           location: this.location,
-          ssh_keys: this.ssh_keys,
+          ssh_keys: [this.key],
           image: this.image,
         }),
       })

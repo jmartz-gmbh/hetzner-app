@@ -2,6 +2,7 @@
 import HeaderDesktop from "./components/header-desktop.vue";
 import HeaderMobile from "./components/header-mobile.vue";
 import HeaderTablet from "./components/header-tablet.vue";
+import Footer from "./components/footer.vue";
 import messages from "./components/messages.vue";
 
 export default {
@@ -11,6 +12,7 @@ export default {
     "header-mobile": HeaderMobile,
     "header-tablet": HeaderTablet,
     "header-desktop": HeaderDesktop,
+    "footer-general": Footer,
   },
   watch: {
     $route: function () {
@@ -35,7 +37,9 @@ export default {
       <messages></messages>
       <router-view></router-view>
     </main>
-    <footer class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">Footer</footer>
+    <footer class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
+      <footer-general></footer-general>
+    </footer>
   </div>
 </template>
 
