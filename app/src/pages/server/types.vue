@@ -41,6 +41,11 @@ export default {
   mounted() {
     this.$store.commit("server-types-load", this);
   },
+  methods: {
+    loadServers: function(){
+      this.$store.commit("server-types-load", this);
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

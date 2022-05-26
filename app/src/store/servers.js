@@ -41,17 +41,22 @@ export default {
         });
     },
     "server-unsecure": function (state, data) {
-      fetch("https://api.hetzner.cloud/v1/servers/" + data.id + "/actions/change_protection", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + data.that.$store.state.token.auth,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          delete: false,
-          rebuild: false
-        }),
-      })
+      fetch(
+        "https://api.hetzner.cloud/v1/servers/" +
+          data.id +
+          "/actions/change_protection",
+        {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + data.that.$store.state.token.auth,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            delete: false,
+            rebuild: false,
+          }),
+        }
+      )
         .then((response) => {
           return response.json();
         })
@@ -61,17 +66,22 @@ export default {
         });
     },
     "server-secure": function (state, data) {
-      fetch("https://api.hetzner.cloud/v1/servers/" + data.id + "/actions/change_protection", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + data.that.$store.state.token.auth,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          delete: true,
-          rebuild: true
-        }),
-      })
+      fetch(
+        "https://api.hetzner.cloud/v1/servers/" +
+          data.id +
+          "/actions/change_protection",
+        {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + data.that.$store.state.token.auth,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            delete: true,
+            rebuild: true,
+          }),
+        }
+      )
         .then((response) => {
           return response.json();
         })
@@ -95,6 +105,10 @@ export default {
             state.items = [];
             for (let i = 0; i < data.servers.length; i++) {
               state.items.push(data.servers[i]);
+              localStorage.setItem(
+                "server-" + data.servers[i].id,
+                JSON.stringify(data.servers[i])
+              );
             }
             localStorage.setItem("servers", JSON.stringify(data.servers));
           });
