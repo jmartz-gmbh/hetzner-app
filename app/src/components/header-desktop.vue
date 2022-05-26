@@ -4,7 +4,7 @@
       <div class="logo">Hetzner Cloud App</div>
       <div class="nav space-x-2">
         <router-link to="/">Home</router-link>
-        <router-link to="/settings">Settings</router-link>
+        <router-link to="/settings"><font-awesome-icon icon="gear"/></router-link>
       </div>
     </div>
   </div>

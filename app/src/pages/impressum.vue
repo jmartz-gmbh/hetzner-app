@@ -108,3 +108,15 @@
     </p>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Impressum",
+  mounted() {
+    this.$store.commit('breadcrumb-add', {
+      link: '/impressum',
+      label: 'Impressum'
+    });
+  },
+}
+</script>

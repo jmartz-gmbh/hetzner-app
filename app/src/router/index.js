@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/home.vue";
+import Servers from "../pages/servers.vue";
 import Server from "../pages/server.vue";
 import ServerNew from "../pages/server/add.vue";
 import ServerTypes from "../pages/server/types.vue";
@@ -11,10 +12,12 @@ import ServerVolumes from "../pages/server/volumes.vue";
 import ServerNetworks from "../pages/server/networks.vue";
 import ServerLoadBalancers from "../pages/server/load_balancers.vue";
 import Settings from "../pages/settings.vue";
+import Robot from "../pages/robot.vue";
 import Impressum from "../pages/impressum.vue";
 
 const routes = [
   { path: "/", component: Home },
+  { path: "/robot", component: Robot },
   { path: "/impressum", component: Impressum },
   {
     path: "/server/:id",
@@ -23,6 +26,10 @@ const routes = [
   {
     path: "/server/new",
     component: ServerNew,
+  },
+  {
+    path: "/servers",
+    component: Servers,
   },
   {
     path: "/settings",

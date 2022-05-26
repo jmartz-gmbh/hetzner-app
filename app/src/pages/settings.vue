@@ -92,19 +92,23 @@ export default {
   name: "Settings",
   data() {
     return {
-      token: ''
+      token: "",
     };
   },
   methods: {
     saveToken: function () {
       localStorage.setItem("token", this.token);
     },
-    loadToken: function(){
-      this.token = localStorage.getItem("token")
-    }
+    loadToken: function () {
+      this.token = localStorage.getItem("token");
+    },
   },
   mounted() {
     this.loadToken();
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings",
+      label: "Settings",
+    });
   },
 };
 </script>

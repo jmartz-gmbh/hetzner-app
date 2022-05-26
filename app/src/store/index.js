@@ -1,15 +1,16 @@
 import { createStore } from "vuex";
-import messages from "./messages.js";
-import token from "./token.js";
-import server_types from "./server/types.js";
-import locations from "./server/locations.js";
-import images from "./server/images.js";
-import datacenters from "./server/datacenters.js";
-import ssh_keys from "./server/keys.js";
-import servers from "./servers.js";
-import load_balancers from "./server/load_balancers.js";
-import networks from "./server/networks.js";
-import volumes from "./server/volumes.js";
+import messages from "./messages";
+import token from "./token";
+import server_types from "./server/types";
+import locations from "./server/locations";
+import images from "./server/images";
+import datacenters from "./server/datacenters";
+import ssh_keys from "./server/keys";
+import servers from "./servers";
+import breadcrumb from "./breadcrumb";
+import load_balancers from "./server/load_balancers";
+import networks from "./server/networks";
+import volumes from "./server/volumes";
 
 const store = createStore({
   modules: {
@@ -19,6 +20,7 @@ const store = createStore({
     locations: locations,
     token: token,
     images: images,
+    breadcrumb: breadcrumb,
     ssh_keys: ssh_keys,
     load_balancers: load_balancers,
     networks: networks,

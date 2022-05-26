@@ -86,6 +86,12 @@ export default {
       );
     },
   },
+  created() {
+    this.$store.commit("breadcrumb-add", {
+      link: this.$route.fullPath,
+      label: "Server",
+    });
+  },
 };
 </script>
 <style lang="less" scoped>

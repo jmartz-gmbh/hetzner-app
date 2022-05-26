@@ -1,14 +1,34 @@
+<template>
+  <div class="px-2 py-2 bg-gray-400">
+    <header class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
+      <header-mobile></header-mobile>
+      <header-tablet></header-tablet>
+      <header-desktop></header-desktop>
+    </header>
+    <main class="mx-auto max-w-5xl my-2 min-h-screen bg-white px-2 py-2">
+      <breadcrumb></breadcrumb>
+      <messages class="mb-10"></messages>
+      <router-view></router-view>
+    </main>
+    <footer class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
+      <footer-general></footer-general>
+    </footer>
+  </div>
+</template>
+
 <script>
 import HeaderDesktop from "./components/header-desktop.vue";
 import HeaderMobile from "./components/header-mobile.vue";
 import HeaderTablet from "./components/header-tablet.vue";
 import Footer from "./components/footer.vue";
 import messages from "./components/messages.vue";
+import breadcrumb from "./components/breadcrumb.vue";
 
 export default {
   name: "Header",
   components: {
     messages: messages,
+    breadcrumb: breadcrumb,
     "header-mobile": HeaderMobile,
     "header-tablet": HeaderTablet,
     "header-desktop": HeaderDesktop,
@@ -21,27 +41,8 @@ export default {
         status: "warning",
         message: "Dies ist keine Offizielle Webseite der Hetzner GmbH",
       });
-      window.scrollTo({top: 0, behavior: 'smooth'});
+      window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
 };
 </script>
-
-<template>
-  <div class="px-2 py-2 bg-gray-400">
-    <header class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
-      <header-mobile></header-mobile>
-      <header-tablet></header-tablet>
-      <header-desktop></header-desktop>
-    </header>
-    <main class="mx-auto max-w-5xl my-2 min-h-screen bg-white px-2 py-2">
-      <messages></messages>
-      <router-view></router-view>
-    </main>
-    <footer class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
-      <footer-general></footer-general>
-    </footer>
-  </div>
-</template>
-
-<style></style>
