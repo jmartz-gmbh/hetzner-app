@@ -3,7 +3,7 @@
     <div class="settings-servers mt-3">
       <h2 class="flex justify-between my-2 px-2">
         <span class="font-bold text-lg">Images</span>
-        <button @click.prevent="loadImages()"><font-awesome-icon icon="rotate"/></button>
+        <button @click.prevent="loadImages()"><fa icon="rotate"/></button>
       </h2>
       <table>
         <tr>

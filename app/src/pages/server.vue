@@ -1,6 +1,9 @@
 <template>
   <div class="vp-server-view">
-    <h2><span class="font-bold text-lg my-2">Server Informationen</span></h2>
+    <h2 class="flex justify-between">
+      <span class="font-bold text-lg my-2">Server Informationen</span>
+      <fa icon="rotate" @click="reload()" />
+    </h2>
     <div class="tw-table block border border-black">
       <div class="row grid grid-cols-12 bg-gray-300 font-bold px-2 py-2">
         <div class="col col-span-12 md:col-span-2">Id</div>
@@ -88,9 +91,22 @@ export default {
   },
   created() {
     this.$store.commit("breadcrumb-add", {
-      link: this.$route.fullPath,
-      label: "Server",
+      link: '/servers',
+      label: "Servers",
     });
+    this.$store.commit("breadcrumb-add", {
+      link: this.$route.fullPath,
+      label: "Server (" + this.$route.params.id + ")",
+    });
+  },
+  methods: {
+    reload: function () {
+      this.$store.commit("servers-load", this);
+      const that = this;
+      setTimeout(function () {
+        that.$router.go();
+      }, 5000);
+    },
   },
 };
 </script>

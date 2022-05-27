@@ -4,7 +4,7 @@
       <h2 class="flex justify-between my-2 px-2">
         <span class="font-bold text-lg ">Datacenters</span>
         <button @click.prevent="loadDatacenters()">
-          <font-awesome-icon icon="rotate" />
+          <fa icon="rotate" />
         </button>
       </h2>
       <table>

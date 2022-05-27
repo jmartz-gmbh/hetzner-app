@@ -11,7 +11,6 @@ const messages = {
     },
     "messages-reset": function (state) {
       state.items = [];
-      console.log("reset");
     },
     "messages-remove": function (state, data) {
       state.items.splice(data.index, 1);

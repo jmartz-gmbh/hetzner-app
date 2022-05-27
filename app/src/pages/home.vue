@@ -26,7 +26,7 @@
       <div class="col-span-6 md:col-span-3">
         <div class="grid grid-cols-4">
           <div class="col-span-4 md:col-span-2 text-center mt-12">
-            <font-awesome-icon icon="server" class="fa-3x" />
+            <fa icon="server" class="fa-3x" />
             <p class="mt-5">
               <router-link to="/servers" class="text-blue-400"
                 >Cloud Server</router-link
@@ -34,7 +34,7 @@
             </p>
           </div>
           <div class="col-span-4 md:col-span-2 text-center mt-12">
-            <font-awesome-icon icon="robot" class="fa-3x" />
+            <fa icon="robot" class="fa-3x" />
             <p class="mt-5">
               <router-link to="/robot" class="text-blue-400"
                 >DNS Robot</router-link

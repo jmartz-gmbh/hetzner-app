@@ -1,7 +1,7 @@
 <template>
   <div class="WelcomeScreen">
     <div
-      v-if="$store.state.servers.items === false"
+      v-if="$store.state.token.auth === ''"
       class="welcome-form block text-center mt-5"
     >
       <h2 class="text-lg bg-gray-300 px-2 py-2 border border-black">
@@ -12,9 +12,16 @@
     <div v-else class="">
       <h2 class="flex justify-between px-2 my-2">
         <span class="text-lg font-bold">Servers</span>
-        <router-link to="/server/new">
-          <font-awesome-icon class="float-right mr-2" icon="plus" />
-        </router-link>
+        <div class="buttons">
+          <router-link to="/server/new">
+            <fa class="float-right mr-2" icon="plus" />
+          </router-link>
+          <fa
+            @click="refresh()"
+            class="float-right mr-2"
+            icon="rotate"
+          />
+        </div>
       </h2>
       <hr />
       <div class="tw-table block border border-black">
@@ -59,14 +66,14 @@
               class="border border-black px-2 py-2 w-10 h-10"
               title="Delete Server"
             >
-              <font-awesome-icon icon="times" />
+              <fa icon="times" />
             </button>
             <button
               @click="rebootServer(server.id)"
               class="border border-black px-2 py-2 w-10 h-10"
               title="Reboot Server"
             >
-              <font-awesome-icon icon="rotate" />
+              <fa icon="rotate" />
             </button>
             <button
               v-if="!server.protection.delete"
@@ -74,7 +81,7 @@
               class="border border-black px-2 py-2 w-10 h-10"
               title="Secure Server"
             >
-              <font-awesome-icon icon="lock" />
+              <fa icon="lock" />
             </button>
             <button
               v-if="server.protection.delete"
@@ -82,7 +89,7 @@
               class="border border-black px-2 py-2 w-10 h-10"
               title="Secure Server"
             >
-              <font-awesome-icon icon="lock-open" />
+              <fa icon="lock-open" />
             </button>
           </div>
         </div>
@@ -104,6 +111,10 @@ export default {
     });
   },
   methods: {
+    refresh: function () {
+      this.$store.commit("servers-load", this);
+      this.$store.commit("servers-refresh", this);
+    },
     rebootServer: function (id) {
       if (confirm("Do you want to Restart the Server ?")) {
         this.$store.commit("server-reboot", { that: this, id });

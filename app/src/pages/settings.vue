@@ -16,7 +16,7 @@
             class="block px-2 py-2 bg-gray-500 text-white"
             @click="saveToken()"
           >
-            <font-awesome-icon icon="save" class="mx-2" />
+            <fa icon="save" class="mx-2" />
           </button>
         </tr>
       </table>

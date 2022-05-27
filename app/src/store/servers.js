@@ -9,6 +9,9 @@ export default {
     "servers-reset": function (state) {
       state.items = [];
     },
+    "servers-refresh": function (state) {
+      state.items = JSON.parse(localStorage.getItem("servers"));
+    },
     "server-reboot": function (state, data) {
       fetch(
         "https://api.hetzner.cloud/v1/servers/" + data.id + "/actions/reboot",

@@ -21,7 +21,7 @@ app.use(store);
 library.add(faPlus, faTimes, faInfo, faSave, faRotate, faHeart, faLock, faLockOpen, faServer, faRobot, faGear)
 
 /* add font awesome icon component */
-app.component('font-awesome-icon', FontAwesomeIcon);
+app.component('fa', FontAwesomeIcon);
 
 app.use(router);
 

@@ -97,6 +97,7 @@ export default {
         .then((data) => {
           if (data.server) {
             console.log("New Server with id: " + data.server.id);
+            this.$router.push('/servers');
           }
         });
     },

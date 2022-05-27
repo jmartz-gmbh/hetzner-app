@@ -5,7 +5,7 @@
       <div class="nav space-x-2">
         <router-link to="/">Home</router-link>
         <router-link to="/settings"
-          ><font-awesome-icon icon="gear"
+          ><fa icon="gear"
         /></router-link>
       </div>
     </div>

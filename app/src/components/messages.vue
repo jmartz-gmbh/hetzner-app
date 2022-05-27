@@ -9,10 +9,10 @@
       v-for="(item, index) in this.$store.state.messages.items"
     >
       <p>
-        <font-awesome-icon icon="info" class="mr-3" />
+        <fa icon="info" class="mr-3" />
         {{ item.message }}
       </p>
-      <font-awesome-icon icon="times" @click="close(index)" class="ml-3" />
+      <fa icon="times" @click="close(index)" class="ml-3" />
     </div>
   </div>
 </template>
