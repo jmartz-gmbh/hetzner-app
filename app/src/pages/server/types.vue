@@ -40,6 +40,14 @@ export default {
   },
   mounted() {
     this.$store.commit("server-types-load", this);
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings",
+      label: "Settings",
+    });
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings/types",
+      label: "Types",
+    });
   },
   methods: {
     loadServers: function(){

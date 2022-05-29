@@ -32,7 +32,7 @@
           {{ location.network_zone }}
         </div>
         <div class="col col-span-12 md:col-span-2">
-          {{ location.latitude }} <br>
+          {{ location.latitude }} <br />
           {{ location.longitude }}
         </div>
       </div>
@@ -43,6 +43,16 @@
 <script>
 export default {
   name: "LocationView",
+  mounted() {
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings/locations",
+      label: "Locations",
+    });
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings/keys",
+      label: "Location (" + this.$route.params.id + ")",
+    });
+  },
   computed: {
     location: function () {
       this.$store.commit("locations-reload", this);

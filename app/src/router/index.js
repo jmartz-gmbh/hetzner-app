@@ -6,6 +6,7 @@ import ServerNew from "../pages/server/add.vue";
 import ServerKeyAdd from "../pages/server/key/add.vue";
 import ServerKeyView from "../pages/server/key/view.vue";
 import ServerLocationView from "../pages/server/location/view.vue";
+import ServerDatacenterView from "../pages/server/datacenter/view.vue";
 import ServerKeyEdit from "../pages/server/key/edit.vue";
 import ServerTypes from "../pages/server/types.vue";
 import ServerDatacenters from "../pages/server/datacenters.vue";
@@ -49,6 +50,9 @@ const routes = [
   },{
     path: "/settings/location/id/:id",
     component: ServerLocationView,
+  },{
+    path: "/settings/datacenter/id/:id",
+    component: ServerDatacenterView,
   },
   {
     path: "/settings/datacenters",

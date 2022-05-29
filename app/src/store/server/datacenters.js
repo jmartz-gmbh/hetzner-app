@@ -9,6 +9,9 @@ export default {
     "datacenters-reset": function (state) {
       state.items = [];
     },
+    "datacenters-reload": function (state) {
+      state.items = JSON.parse(localStorage.getItem('datacenters'))
+    },
     "datacenters-load": function (state, that) {
       that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
