@@ -12,6 +12,9 @@ export default {
     "servers-refresh": function (state) {
       state.items = JSON.parse(localStorage.getItem("servers"));
     },
+    "servers-save": function (state) {
+      localStorage.setItem("servers", JSON.stringify(state.items));
+    },
     "server-reboot": function (state, data) {
       fetch(
         "https://api.hetzner.cloud/v1/servers/" + data.id + "/actions/reboot",
@@ -93,6 +96,9 @@ export default {
           data.that.$router.go();
         });
     },
+    "servers-reload": function (state) {
+      state.items = JSON.parse(localStorage.getItem("servers"));
+    },
     "servers-load": function (state, that) {
       that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
@@ -114,6 +120,75 @@ export default {
               );
             }
             localStorage.setItem("servers", JSON.stringify(data.servers));
+          });
+      }
+    },
+    "server-load": function (state, data) {
+      data.that.$store.commit("token-load");
+      data.that.$store.commit("servers-load", data.that);
+      if (data.that.$store.state.token.auth) {
+        fetch("https://api.hetzner.cloud/v1/servers/" + data.id, {
+          method: "PUT",
+          headers: {
+            Authorization: "Bearer " + data.that.$store.state.token.auth,
+          },
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (json) {
+            for (let i = 0; i < state.items.length; i++) {
+              if (state.items[i].id == json.server.id) {
+                state.items[i] = json.server;
+                data.that.$store.commit("servers-save", data.that);
+              }
+
+              data.that.$router.go();
+            }
+          });
+      }
+    },
+    "server-power-off": function (state, data) {
+      data.that.$store.commit("token-load");
+      if (data.that.$store.state.token.auth) {
+        fetch(
+          "https://api.hetzner.cloud/v1/servers/" +
+            data.id +
+            "/actions/poweroff",
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + data.that.$store.state.token.auth,
+            },
+          }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (json) {
+            data.that.$router.go();
+          });
+      }
+    },
+    "server-power-on": function (state, data) {
+      data.that.$store.commit("token-load");
+      if (data.that.$store.state.token.auth) {
+        fetch(
+          "https://api.hetzner.cloud/v1/servers/" +
+            data.id +
+            "/actions/poweron",
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + data.that.$store.state.token.auth,
+            },
+          }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (json) {
+            data.that.$router.go();
           });
       }
     },

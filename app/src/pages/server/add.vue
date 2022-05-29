@@ -11,32 +11,42 @@
       <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-2">
         <label class="font-bold block mb-2">Server Type</label>
         <select v-model="server_type" class="w-full px-2 py-2">
-          <option v-for="(typ, index) in server_types">{{ typ.name }}</option>
+          <option v-for="(typ, index) in $store.state.server_types.items">
+            {{ typ.name }}
+          </option>
         </select>
       </div>
 
       <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-2">
         <label class="font-bold block mb-2">Server Location</label>
         <select v-model="location" class="w-full px-2 py-2">
-          <option v-for="(l, index) in locations">{{ l.name }}</option>
+          <option v-for="(l, index) in $store.state.locations.items">
+            {{ l.name }}
+          </option>
         </select>
       </div>
 
       <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-2">
         <label class="font-bold block mb-2">Server Image</label>
         <select v-model="image" class="w-full px-2 py-2">
-          <option v-for="(i, index) in images">{{ i.name }}</option>
+          <option v-for="(i, index) in $store.state.images.items">
+            {{ i.name }}
+          </option>
         </select>
       </div>
 
       <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-2">
         <label class="font-bold block mb-2">Server SSH Keys</label>
         <select v-model="key" class="w-full px-2 py-2">
-          <option v-for="(k, index) in ssh_keys">{{ k.name }}</option>
+          <option v-for="(k, index) in $store.state.ssh_keys.items">
+            {{ k.name }}
+          </option>
         </select>
       </div>
 
-      <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-2 text-right">
+      <div
+        class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-2 text-right"
+      >
         <button
           @click="createServer()"
           class="px-2 py-2 w-full mt-7 font-bold bg-red-600 text-white"
@@ -60,29 +70,26 @@ export default {
       image: "",
     };
   },
-  computed: {
-    token: function () {
-      return localStorage.getItem("token");
-    },
-    server_types: function () {
-      return JSON.parse(localStorage.getItem("server_types"));
-    },
-    images: function () {
-      return JSON.parse(localStorage.getItem("images"));
-    },
-    ssh_keys: function () {
-      return JSON.parse(localStorage.getItem("ssh_keys"));
-    },
-    locations: function () {
-      return JSON.parse(localStorage.getItem("locations"));
-    },
+  mounted() {
+    this.$store.commit("server-types-load", this);
+    this.$store.commit("ssh-keys-load", this);
+    this.$store.commit("images-load", this);
+    this.$store.commit("locations-load", this);
+    this.$store.commit("breadcrumb-add", {
+      link: "/servers",
+      label: "Servers",
+    });
+    this.$store.commit("breadcrumb-add", {
+      link: "/server/new",
+      label: "Add",
+    });
   },
   methods: {
     createServer: function () {
       fetch("https://api.hetzner.cloud/v1/servers", {
         method: "POST",
         headers: {
-          Authorization: "Bearer " + this.token,
+          Authorization: "Bearer " + this.$store.state.token.auth,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -97,7 +104,7 @@ export default {
         .then((data) => {
           if (data.server) {
             console.log("New Server with id: " + data.server.id);
-            this.$router.push('/servers');
+            this.$router.push("/servers");
           }
         });
     },

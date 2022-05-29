@@ -1,8 +1,18 @@
 <template>
   <div class="vp-server-view">
     <h2 class="flex justify-between">
-      <span class="font-bold text-lg my-2">Server Informationen</span>
-      <fa icon="rotate" @click="reload()" />
+      <span class="font-bold text-lg">Server Informationen</span>
+      <div class="buttons">
+        <fa icon="rotate" class="mr-2" @click="reload()" />
+        <fa
+          icon="power-off"
+          class="mr-2"
+          title="Power off"
+          color="red"
+          @click="turnoff()"
+        />
+        <fa icon="power-off" class="mr-2" color="green" title="Power on" @click="turnon()" />
+      </div>
     </h2>
     <div class="tw-table block border border-black">
       <div class="row grid grid-cols-12 bg-gray-300 font-bold px-2 py-2">
@@ -91,7 +101,7 @@ export default {
   },
   created() {
     this.$store.commit("breadcrumb-add", {
-      link: '/servers',
+      link: "/servers",
       label: "Servers",
     });
     this.$store.commit("breadcrumb-add", {
@@ -101,11 +111,24 @@ export default {
   },
   methods: {
     reload: function () {
-      this.$store.commit("servers-load", this);
-      const that = this;
-      setTimeout(function () {
-        that.$router.go();
-      }, 5000);
+      this.$store.commit("server-load", {
+        that: this,
+        id: this.$route.params.id
+      });
+    },
+    turnoff: function () {
+      let id = this.$route.params.id;
+      this.$store.commit("server-power-off", {
+        that: this,
+        id: id,
+      });
+    },
+    turnon: function () {
+      let id = this.$route.params.id;
+      this.$store.commit("server-power-on", {
+        that: this,
+        id: id,
+      });
     },
   },
 };

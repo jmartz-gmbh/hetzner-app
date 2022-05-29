@@ -10,6 +10,7 @@ import servers from "./servers";
 import breadcrumb from "./breadcrumb";
 import load_balancers from "./server/load_balancers";
 import networks from "./server/networks";
+import request from "./request";
 import volumes from "./server/volumes";
 
 const store = createStore({
@@ -21,6 +22,7 @@ const store = createStore({
     token: token,
     images: images,
     breadcrumb: breadcrumb,
+    request: request,
     ssh_keys: ssh_keys,
     load_balancers: load_balancers,
     networks: networks,

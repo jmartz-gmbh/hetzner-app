@@ -73,7 +73,7 @@
               class="border border-black px-2 py-2 w-10 h-10"
               title="Reboot Server"
             >
-              <fa icon="rotate" />
+              <fa icon="rotate-right" />
             </button>
             <button
               v-if="!server.protection.delete"

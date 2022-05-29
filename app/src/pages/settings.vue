@@ -7,7 +7,7 @@
         </tr>
         <tr class="flex justify-between mt-2">
           <input
-            type="text"
+            type="password"
             v-model="token"
             class="block w-full px-2 py-2"
             placeholder="Your Token"

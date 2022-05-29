@@ -2,45 +2,89 @@
   <div class="tab-ssh-keys">
     <div class="settings-servers mt-3">
       <h2 class="flex justify-between my-2 px-2">
-        <span class="font-bold text-lg ">SSH Keys</span>
-        <button @click.prevent="loadSshKeys()">
-          <fa icon="rotate" />
-        </button>
+        <span class="font-bold text-lg">SSH Keys</span>
+        <div class="buttons space-x-2">
+          <button @click.prevent="load()">
+            <fa icon="rotate" />
+          </button>
+          <router-link to="/settings/key/view/add">
+            <fa icon="plus" />
+          </router-link>
+        </div>
       </h2>
-      <table>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Erstellt</th>
-        </tr>
-        <tr v-for="(typ, index) in this.$store.state.ssh_keys.items">
-          <td>{{ typ.id }}</td>
-          <td>{{ typ.name }}</td>
-          <td>{{ typ.created }}</td>
-        </tr>
-      </table>
+      <div class="tw-table block border border-black">
+        <div class="row grid grid-cols-12 bg-gray-300 font-bold px-2 py-2">
+          <div class="col col-span-12 md:col-span-1">Id</div>
+          <div class="col col-span-12 md:col-span-2">Name</div>
+          <div class="col col-span-12 md:col-span-3">Created</div>
+          <div class="col col-span-12 md:col-span-4">Fingerprint</div>
+          <div class="col col-span-12 md:col-span-2 text-right">Actions</div>
+        </div>
+        <div
+          v-for="(typ, index) in $store.state.ssh_keys.items"
+          :key="index"
+          class="row grid grid-cols-12 px-2 py-2"
+        >
+          <div class="col col-span-12 md:col-span-1">
+            {{ typ.id }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            <router-link
+              :to="'/settings/key/view/' + typ.id"
+              class="text-blue-400"
+              >{{ typ.name }}</router-link
+            >
+          </div>
+          <div class="col col-span-12 md:col-span-3">
+            {{ typ.created }}
+          </div>
+          <div class="col col-span-12 md:col-span-4">
+            {{ typ.fingerprint }}
+          </div>
+          <div class="col col-span-12 md:col-span-2 space-x-2 text-right">
+            <button @click="remove(typ.id)"><fa icon="trash-can" /></button>
+            <router-link :to="'/settings/key/edit/' + typ.id"
+              ><fa icon="edit"
+            /></router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "ServerKeys",
-  data() {
-    return {
-      ssh_keys: [],
-    };
-  },
   computed: {
     token: function () {
       return localStorage.getItem("token");
     },
+    ssh_keys: function () {
+      return this.$store.state.ssh_keys.items;
+    },
   },
   mounted() {
     this.$store.commit("ssh-keys-load", this);
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings",
+      label: "Settings",
+    });
+    this.$store.commit("breadcrumb-add", {
+      link: "/settings/keys",
+      label: "Keys",
+    });
   },
   methods: {
-    loadSshKeys: function () {
+    load: function () {
       this.$store.commit("ssh-keys-load", this);
+    },
+    remove: function (id) {
+      if (confirm("Do you want to Delete this SSH Key? ")) {
+        this.$store.commit("ssh-key-remove", {
+          that: this,
+          id: id,
+        });
+      }
     },
   },
 };
