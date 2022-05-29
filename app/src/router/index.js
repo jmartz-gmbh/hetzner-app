@@ -4,6 +4,8 @@ import Servers from "../pages/servers.vue";
 import Server from "../pages/server.vue";
 import ServerNew from "../pages/server/add.vue";
 import ServerKeyAdd from "../pages/server/key/add.vue";
+import ServerNetworkAdd from "../pages/server/network/add.vue";
+import ServerNetworkEdit from "../pages/server/network/edit.vue";
 import ServerKeyView from "../pages/server/key/view.vue";
 import ServerLocationView from "../pages/server/location/view.vue";
 import ServerDatacenterView from "../pages/server/datacenter/view.vue";
@@ -47,10 +49,12 @@ const routes = [
   {
     path: "/settings/locations",
     component: ServerLocations,
-  },{
+  },
+  {
     path: "/settings/location/id/:id",
     component: ServerLocationView,
-  },{
+  },
+  {
     path: "/settings/datacenter/id/:id",
     component: ServerDatacenterView,
   },
@@ -85,7 +89,16 @@ const routes = [
   {
     path: "/settings/networks",
     component: ServerNetworks,
-  },{
+  },
+  {
+    path: "/settings/network/add",
+    component: ServerNetworkAdd,
+  },
+  {
+    path: "/settings/network/edit/:id",
+    component: ServerNetworkEdit,
+  },
+  {
     path: "/settings/load-balancers",
     component: ServerLoadBalancers,
   },

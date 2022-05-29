@@ -1,6 +1,6 @@
 <template>
   <div class="px-2 py-2 bg-gray-400">
-    <header class="mx-auto max-w-5xl my-2 bg-white px-2 py-2">
+    <header class="mx-auto max-w-5xl my-2 px-2 py-2">
       <header-mobile></header-mobile>
       <header-tablet></header-tablet>
       <header-desktop></header-desktop>
@@ -33,6 +33,9 @@ export default {
     "header-tablet": HeaderTablet,
     "header-desktop": HeaderDesktop,
     "footer-general": Footer,
+  },
+  mounted() {
+    this.$store.commit('token-load');
   },
   watch: {
     $route: function () {
