@@ -2,7 +2,7 @@
   <div class="tab-datacenters">
     <div class="settings-servers mt-3">
       <h2 class="flex justify-between my-2 px-2">
-        <span class="font-bold text-lg ">Datacenters</span>
+        <span class="font-bold text-lg">Datacenters</span>
         <button @click.prevent="loadDatacenters()">
           <fa icon="rotate" />
         </button>
@@ -12,13 +12,19 @@
           <th>Id</th>
           <th>Name</th>
           <th>Beschreibung</th>
-          <th>Location Id</th>
+          <th>Location</th>
         </tr>
         <tr v-for="(typ, index) in this.$store.state.datacenters.items">
           <td>{{ typ.id }}</td>
           <td>{{ typ.name }}</td>
           <td>{{ typ.description }}</td>
-          <td>{{ typ.location.id }}</td>
+          <td>
+            <router-link
+              :to="'/settings/location/id/' + typ.location.id"
+              class="text-blue-400"
+              >{{ typ.location.name }}</router-link
+            >
+          </td>
         </tr>
       </table>
     </div>

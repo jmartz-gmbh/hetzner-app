@@ -23,6 +23,9 @@ export default {
           });
       }
     },
+    "locations-reload": function (state) {
+      state.items = JSON.parse(localStorage.getItem("locations"));
+    },
     "location-add": function (state, item) {
       state.items.push(item);
     },
