@@ -16,5 +16,11 @@ yarn
 yarn dev
 ```
 
+## Tech Stack
+- VueJs (Router & Vuex) 
+- Vite
+- Typescript
+- Yarn
+
 ### Todos:
 - Projectmanagment multiple Tokens
