@@ -38,7 +38,7 @@
             {{ typ.ip_range }}
           </div>
           <div class="col col-span-12 md:col-span-3 space-x-2">
-            <button @click="remove()"><fa icon="trash-can" /></button>
+            <button @click="remove(typ.id)"><fa icon="trash-can" /></button>
             <button @click="edit(typ.id)"><fa icon="edit" /></button>
           </div>
         </div>
@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       networks: [],
+      id: 0
     };
   },
   computed: {
@@ -61,7 +62,7 @@ export default {
   },
   mounted() {
     this.$store.commit("networks-load", this);
-     this.$store.commit("breadcrumb-add", {
+    this.$store.commit("breadcrumb-add", {
       link: "/settings",
       label: "Settings",
     });
@@ -79,6 +80,10 @@ export default {
     },
     load: function () {
       this.$store.commit("networks-load", this);
+    },
+    remove: function (id) {
+      this.id = id;
+      this.$store.commit("network-remove", this);
     },
   },
 };
