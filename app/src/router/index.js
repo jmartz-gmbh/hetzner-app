@@ -6,6 +6,7 @@ import ServerNew from "../pages/server/add.vue";
 import ServerKeyAdd from "../pages/server/key/add.vue";
 import ServerNetworkAdd from "../pages/server/network/add.vue";
 import ServerVolumeAdd from "../pages/server/volume/add.vue";
+import ServerVolumeEdit from "../pages/server/volume/edit.vue";
 import ServerNetworkEdit from "../pages/server/network/edit.vue";
 import ServerKeyView from "../pages/server/key/view.vue";
 import ServerLocationView from "../pages/server/location/view.vue";
@@ -82,6 +83,10 @@ const routes = [
   {
     path: "/settings/key/view/:id",
     component: ServerKeyView,
+  },
+  {
+    path: "/settings/volume/edit/:id",
+    component: ServerVolumeEdit,
   },
   {
     path: "/settings/key/edit/:id",

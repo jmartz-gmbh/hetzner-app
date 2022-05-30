@@ -47,8 +47,11 @@
             </div>
             <div v-else class="select-server">{{ typ.server }}</div>
           </div>
-          <div class="col col-span-12 md:col-span-1">
-            <fa icon="trash-can" @click="remove(typ.id)" />
+          <div class="col col-span-12 md:col-span-1 space-x-2">
+            <button @click="remove(typ.id)"><fa icon="trash-can" /></button>
+            <button @click.prevent="edit(typ.id)">
+              <fa icon="edit" />
+            </button>
           </div>
         </div>
       </div>
@@ -82,6 +85,9 @@ export default {
   methods: {
     add: function () {
       this.$router.push("/settings/volume/add");
+    },
+    edit: function (id) {
+      this.$router.push("/settings/volume/edit/" + id);
     },
     load: function () {
       this.$store.commit("volumes-load", this);

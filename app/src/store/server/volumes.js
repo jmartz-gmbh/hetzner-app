@@ -39,16 +39,20 @@ export default {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: that.name,
-            size: that.size,
-            location: that.location,
+            name: that.form.name,
+            size: that.form.size,
+            location: that.form.location,
           }),
         })
           .then(function (response) {
             return response.json();
           })
           .then(function (json) {
-            that.$router.push("/settings/volumes/");
+            if (json.error) {
+              that.$store.commit("request-error", data.error);
+            } else {
+              that.$router.push("/settings/volumes/");
+            }
           });
       }
     },
@@ -60,9 +64,29 @@ export default {
           headers: {
             Authorization: "Bearer " + that.$store.state.token.auth,
           },
+        }).then(function (response) {
+          that.$store.commit("volumes-load", that);
+        });
+      }
+    },
+    "volume-edit": function (state, that) {
+      that.$store.commit("token-load");
+      if (that.$store.state.token.auth) {
+        fetch("https://api.hetzner.cloud/v1/volumes/" + that.id, {
+          method: "PUT",
+          headers: {
+            Authorization: "Bearer " + that.$store.state.token.auth,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: that.name,
+          }),
         })
           .then(function (response) {
-            that.$router.push('/settings/volumes');
+            return response.json();
+          })
+          .then(function (json) {
+            console.log(json);
           });
       }
     },
