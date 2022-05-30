@@ -22,5 +22,9 @@ yarn dev
 - Typescript
 - Yarn
 
+## Feedback
+- create a new Issue
+- write me a mail -> feedback@jmartz.de
+
 ### Todos:
 - Projectmanagment multiple Tokens
