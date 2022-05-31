@@ -16,7 +16,7 @@
     "less-loader": "^11.0.0",
     "plausible-tracker": "^0.3.5",
     "vue": "^3.2.25",
-    "vue-i18n": "9",
+    "vue-i18n": "^9.1.10",
     "vue-moment": "^4.1.0",
     "vue-router": "^4.0.15",
     "vuex": "^4.0.2"

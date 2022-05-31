@@ -2962,7 +2962,7 @@ vite@^2.9.9:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vue-i18n@9:
+vue-i18n@^9.1.10:
   version "9.1.10"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-9.1.10.tgz#7ad516b89ba28debb90fc4181c9a2faec9ad97f9"
   integrity sha512-jpr7gV5KPk4n+sSPdpZT8Qx3XzTcNDWffRlHV/cT2NUyEf+sEgTTmLvnBAibjOFJ0zsUyZlVTAWH5DDnYep+1g==
