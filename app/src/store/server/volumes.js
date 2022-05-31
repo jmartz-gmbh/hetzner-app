@@ -10,7 +10,6 @@ export default {
       state.items = [];
     },
     "volumes-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/volumes", {
           headers: {
@@ -30,7 +29,6 @@ export default {
       }
     },
     "volume-add": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/volumes", {
           method: "POST",
@@ -57,7 +55,6 @@ export default {
       }
     },
     "volume-remove": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/volumes/" + that.id, {
           method: "DELETE",
@@ -70,7 +67,6 @@ export default {
       }
     },
     "volume-edit": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/volumes/" + that.id, {
           method: "PUT",

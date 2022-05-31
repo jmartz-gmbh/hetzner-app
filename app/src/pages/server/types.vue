@@ -2,31 +2,54 @@
   <div class="vc-tab-server-types">
     <div class="settings-servers mt-3">
       <h2 class="flex justify-between my-2 px-2">
-         <span class="font-bold text-lg">Server Types</span>
-        <button @click.prevent="loadServers()"><fa icon="rotate"/></button>
+        <span class="font-bold text-lg">Server Types</span>
+        <button @click.prevent="load()"><fa icon="rotate" /></button>
       </h2>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Cores</th>
-          <th>Memory</th>
-          <th>Disk</th>
-          <th>Prices</th>
-        </tr>
-        <tr v-for="(typ, index) in $store.state.server_types.items">
-          <td>{{ typ.name }}</td>
-          <td>{{ typ.cores }}</td>
-          <td>{{ typ.memory }}</td>
-          <td>{{ typ.disk }}</td>
-          <td>
+      <div class="tw-table block border border-black">
+        <div class="row grid grid-cols-12 bg-gray-300 font-bold px-2 py-2">
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.name") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.cores") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.memory") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.disk") }}
+          </div>
+          <div class="col col-span-12 md:col-span-4">
+            {{ $t("general.price") }}
+          </div>
+        </div>
+
+        <div
+          v-for="(typ, index) in $store.state.server_types.items"
+          :key="index"
+          class="row grid grid-cols-12 px-2 py-2"
+        >
+          <div class="col col-span-12 md:col-span-2">
+            {{ typ.name }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ typ.cores }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ typ.memory }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ typ.disk }}
+          </div>
+          <div class="col col-span-12 md:col-span-4">
             <ul>
               <li v-for="(price, key) in typ.prices">
                 {{ price.location }} {{ parseFloat(price.price_monthly.net) }}
               </li>
             </ul>
-          </td>
-        </tr>
-      </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -50,10 +73,10 @@ export default {
     });
   },
   methods: {
-    loadServers: function(){
+    load: function () {
       this.$store.commit("server-types-load", this);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

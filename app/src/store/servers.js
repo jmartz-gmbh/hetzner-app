@@ -100,7 +100,6 @@ export default {
       state.items = JSON.parse(localStorage.getItem("servers"));
     },
     "servers-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/servers", {
           headers: {
@@ -124,7 +123,6 @@ export default {
       }
     },
     "server-load": function (state, data) {
-      data.that.$store.commit("token-load");
       data.that.$store.commit("servers-load", data.that);
       if (data.that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/servers/" + data.id, {
@@ -149,7 +147,6 @@ export default {
       }
     },
     "server-power-off": function (state, data) {
-      data.that.$store.commit("token-load");
       if (data.that.$store.state.token.auth) {
         fetch(
           "https://api.hetzner.cloud/v1/servers/" +
@@ -171,7 +168,6 @@ export default {
       }
     },
     "server-power-on": function (state, data) {
-      data.that.$store.commit("token-load");
       if (data.that.$store.state.token.auth) {
         fetch(
           "https://api.hetzner.cloud/v1/servers/" +

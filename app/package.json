@@ -14,7 +14,9 @@
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "less": "^4.1.2",
     "less-loader": "^11.0.0",
+    "plausible-tracker": "^0.3.5",
     "vue": "^3.2.25",
+    "vue-i18n": "9",
     "vue-moment": "^4.1.0",
     "vue-router": "^4.0.15",
     "vuex": "^4.0.2"

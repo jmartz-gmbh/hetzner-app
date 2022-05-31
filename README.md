@@ -21,6 +21,7 @@ yarn dev
 - Vite
 - Typescript
 - Yarn
+- Tailwindss
 
 ## Feedback
 - create a new Issue

@@ -2,78 +2,74 @@
   <div class="tab-ssh-keys">
     <div class="settings-servers mt-3">
       <h2 class="flex justify-between my-2 px-2">
-        <span class="font-bold text-lg">Load Balancers</span>
-        <button @click.prevent="loadLoadBalancers()">
-          <fa icon="rotate" />
-        </button>
+        <span class="font-bold text-lg">{{ $t("server.loadbalancers") }}</span>
+        <div class="buttons space-x-2">
+          <button @click.prevent="load()">
+            <fa icon="rotate" />
+          </button>
+          <button @click.prevent="add()">
+            <fa icon="plus" />
+          </button>
+        </div>
       </h2>
-      <table class="table-auto">
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Erstellt</th>
-          <th>Typ</th>
-        </tr>
-        <tr v-for="(typ, index) in this.$store.state.load_balancers.items">
-          <td>{{ typ.id }}</td>
-          <td>{{ typ.name }}</td>
-          <td>{{ typ.created }}</td>
-          <td>{{ typ.load_balancer_type.name }}</td>
-        </tr>
-      </table>
+      <div class="tw-table block border border-black">
+        <div class="row grid grid-cols-12 bg-gray-300 font-bold px-2 py-2">
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.id") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.name") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.created") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.typ") }}
+          </div>
+        </div>
+        <div
+          v-if="!$store.state.load_balancers.items.length"
+          class="table-empty text-center block text-lg font-bold my-2"
+        >
+          Momentan sind keine Load Balancer vorhanden
+        </div>
+        <div v-else class="table-full">
+          <div
+            v-for="(typ, index) in $store.state.load_balancers.items"
+            :key="index"
+            class="row grid grid-cols-12 px-2 py-2"
+          >
+            <div class="col col-span-12 md:col-span-2">
+              {{ typ.id }}
+            </div>
+            <div class="col col-span-12 md:col-span-2">
+              {{ typ.name }}
+            </div>
+            <div class="col col-span-12 md:col-span-2">
+              {{ typ.created }}
+            </div>
+            <div class="col col-span-12 md:col-span-2">
+              {{ typ.load_balancer_type.name }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "ServerLoadBalancers",
-  data() {
-    return {
-      networks: [],
-    };
-  },
-  computed: {
-    token: function () {
-      return localStorage.getItem("token");
-    },
-  },
   mounted() {
     this.$store.commit("load-balancers-load", this);
   },
   methods: {
-    loadLoadBalancers: function () {
+    load: function () {
       this.$store.commit("load-balancers-load", this);
+    },
+    add: function () {
+      this.$router.push("/settings/load-balancer/add");
     },
   },
 };
 </script>
-
-<style lang="less" scoped>
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table td,
-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-table tr:hover {
-  background-color: #ddd;
-}
-
-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04aa6d;
-  color: white;
-}
-</style>

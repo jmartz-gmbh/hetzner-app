@@ -24,6 +24,8 @@ import Footer from "./components/footer.vue";
 import messages from "./components/messages.vue";
 import breadcrumb from "./components/breadcrumb.vue";
 
+import { inject } from 'vue';
+
 export default {
   name: "Header",
   components: {
@@ -36,13 +38,14 @@ export default {
   },
   mounted() {
     this.$store.commit('token-load');
+    const plausible = inject('plausible');
   },
   watch: {
     $route: function () {
       this.$store.commit("messages-reset");
       this.$store.commit("messages-add", {
         status: "warning",
-        message: "Dies ist keine Offizielle Webseite der Hetzner GmbH",
+        message: "Dies ist keine Offizielle Webseite der Hetzner Online GmbH",
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
     },

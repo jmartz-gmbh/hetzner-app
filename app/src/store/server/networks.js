@@ -30,7 +30,6 @@ export default {
       state.items = [];
     },
     "network-remove": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         if (confirm("Do you want to remove this Network ?")) {
           fetch("https://api.hetzner.cloud/v1/networks/" + that.id, {
@@ -43,7 +42,6 @@ export default {
       }
     },
     "networks-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/networks", {
           headers: {

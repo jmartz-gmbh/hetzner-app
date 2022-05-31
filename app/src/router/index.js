@@ -5,6 +5,7 @@ import Server from "../pages/server.vue";
 import ServerNew from "../pages/server/add.vue";
 import ServerKeyAdd from "../pages/server/key/add.vue";
 import ServerNetworkAdd from "../pages/server/network/add.vue";
+import ServerLoadBalancerAdd from "../pages/server/load-balancer/add.vue";
 import ServerVolumeAdd from "../pages/server/volume/add.vue";
 import ServerVolumeEdit from "../pages/server/volume/edit.vue";
 import ServerNetworkEdit from "../pages/server/network/edit.vue";
@@ -111,6 +112,10 @@ const routes = [
   {
     path: "/settings/load-balancers",
     component: ServerLoadBalancers,
+  },
+  {
+    path: "/settings/load-balancer/add",
+    component: ServerLoadBalancerAdd,
   },
 ];
 

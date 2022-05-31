@@ -49,7 +49,6 @@ export default {
   methods: {
     addKey: function () {
       const that = this;
-      this.$store.commit('token-load');
       fetch("https://api.hetzner.cloud/v1/ssh_keys", {
         method: "POST",
         headers: {
@@ -68,11 +67,9 @@ export default {
               that: this,
               error: data.error,
             });
+          } else {
+            this.$router.push("/settings/keys");
           }
-          else {
-             this.$router.push('/settings/keys')
-          }
-        
         });
     },
   },

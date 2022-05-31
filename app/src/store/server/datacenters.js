@@ -13,7 +13,6 @@ export default {
       state.items = JSON.parse(localStorage.getItem('datacenters'))
     },
     "datacenters-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/datacenters", {
           headers: {

@@ -9,8 +9,10 @@ export default {
     "load-balancers-reset": function (state) {
       state.items = [];
     },
+    "load-balancers-reload": function (state) {
+      state.items = JSON.parse(localStorage.getItem("load_balancers"));
+    },
     "load-balancers-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/load_balancers", {
           headers: {
@@ -29,6 +31,27 @@ export default {
               "load_balancers",
               JSON.stringify(data.load_balancers)
             );
+          });
+      }
+    },
+    "load-balancer-add": function (state, that) {
+      if (that.$store.state.token.auth) {
+        fetch("https://api.hetzner.cloud/v1/load_balancers", {
+          method: 'POST',
+          headers: {
+            Authorization: "Bearer " + that.$store.state.token.auth,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: that.name,
+            typ: that.typ,
+          })
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (json) {
+            console.log(json);
           });
       }
     },

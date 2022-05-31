@@ -7,7 +7,7 @@ export default {
       state.items.push(item);
     },
     "ssh-key-update": function (state, data) {
-      data.that.$store.commit("token-load");
+      data.that.$store.commit("");
       fetch("https://api.hetzner.cloud/v1/ssh_keys/" + data.id, {
         method: "PUT",
         headers: {
@@ -32,7 +32,6 @@ export default {
       state.items = JSON.parse(localStorage.getItem("ssh_keys"));
     },
     "ssh-key-remove": function (state, data) {
-      data.that.$store.commit("token-load");
       if (data.that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/ssh_keys/" + data.id, {
           method: "DELETE",
@@ -43,7 +42,6 @@ export default {
       }
     },
     "ssh-keys-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/ssh_keys", {
           headers: {

@@ -10,7 +10,6 @@ export default {
       state.items = [];
     },
     "server-types-load": function (state, that) {
-      that.$store.commit("token-load");
       if (that.$store.state.token.auth) {
         fetch("https://api.hetzner.cloud/v1/server_types", {
           headers: {
