@@ -18,7 +18,7 @@ import { createI18n } from 'vue-i18n'
 import plausible from './plugins/plausible';
 
 const plausibleOptions = { 
-  domain: 'hetzner.app',  // Update for your site
+  domain: 'www.hetzner.app', 
   hashMode: false,
   trackLocalhost: false,
 };
