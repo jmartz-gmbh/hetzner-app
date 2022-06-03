@@ -16,7 +16,7 @@
           >
           oder per Github
           <a
-            href="https://github.com/jmartz-gmbh/hetzner-cloud/issues"
+            href="https://github.com/jmartz-gmbh/hetzner-app/issues"
             class="text-blue-400"
             target="_blank"
             >Issue</a
