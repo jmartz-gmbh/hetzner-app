@@ -12,7 +12,11 @@
         </router-link>
       </div>
       <div class="nav space-x-3 text-lg mt-1 font-bold">
-        {{$i18n.availableLocales}}
+        <select v-model="$i18n.locale">
+          <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang">
+            {{ lang }}
+          </option>
+        </select>
         <router-link to="/settings" title="Settings"
           ><fa icon="gear"
         /></router-link>

@@ -21,6 +21,7 @@ import ServerKeys from "../pages/server/keys.vue";
 import ServerVolumes from "../pages/server/volumes.vue";
 import ServerNetworks from "../pages/server/networks.vue";
 import ServerLoadBalancers from "../pages/server/load_balancers.vue";
+import ServerLoadBalancerTypes from "../pages/server/load_balancer_types.vue";
 import Settings from "../pages/settings.vue";
 import Robot from "../pages/robot.vue";
 import Impressum from "../pages/impressum.vue";
@@ -112,6 +113,10 @@ const routes = [
   {
     path: "/settings/load-balancers",
     component: ServerLoadBalancers,
+  },
+  {
+    path: "/settings/load-balancer-types",
+    component: ServerLoadBalancerTypes,
   },
   {
     path: "/settings/load-balancer/add",

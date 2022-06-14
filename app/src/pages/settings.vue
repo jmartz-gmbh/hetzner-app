@@ -22,38 +22,15 @@
       </table>
     </div>
     <div class="settings-pages mt-5">
-      <h2 class="px-2 py-2">more Settings</h2>
+      <h2 class="px-2 py-2">Resources</h2>
       <div class="grid grid-cols-4 text-center mt-2 gap-2">
         <div class="col-span-2 md:col-span-1">
           <router-link
-            to="/settings/types"
+            to="/servers"
             class="bg-gray-500 text-white border border-black block px-2 py-2"
-            >Types</router-link
+            >Servers</router-link
           >
         </div>
-        <div class="col-span-2 md:col-span-1">
-          <router-link
-            to="/settings/datacenters"
-            class="bg-gray-500 text-white border border-black block px-2 py-2"
-            >Datacenters</router-link
-          >
-        </div>
-        <div class="col-span-2 md:col-span-1">
-          <router-link
-            to="/settings/locations"
-            class="bg-gray-500 text-white border border-black block px-2 py-2"
-            >Locations</router-link
-          >
-        </div>
-        <div class="col-span-2 md:col-span-1">
-          <router-link
-            to="/settings/images"
-            class="bg-gray-500 text-white border border-black block px-2 py-2"
-            >Images</router-link
-          >
-        </div>
-      </div>
-      <div class="grid grid-cols-4 text-center mt-2 gap-2">
         <div class="col-span-2 md:col-span-1">
           <router-link
             to="/settings/keys"
@@ -80,6 +57,44 @@
             to="/settings/load-balancers"
             class="bg-gray-500 text-white border border-black block px-2 py-2"
             >Load Balancers</router-link
+          >
+        </div>
+      </div>
+      <h2 class="px-2 py-2">more Settings</h2>
+      <div class="grid grid-cols-4 text-center mt-2 gap-2">
+        <div class="col-span-2 md:col-span-1">
+          <router-link
+            to="/settings/types"
+            class="bg-gray-500 text-white border border-black block px-2 py-2"
+            >Types</router-link
+          >
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <router-link
+            to="/settings/locations"
+            class="bg-gray-500 text-white border border-black block px-2 py-2"
+            >Locations</router-link
+          >
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <router-link
+            to="/settings/datacenters"
+            class="bg-gray-500 text-white border border-black block px-2 py-2"
+            >Datacenters</router-link
+          >
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <router-link
+            to="/settings/images"
+            class="bg-gray-500 text-white border border-black block px-2 py-2"
+            >Images</router-link
+          >
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <router-link
+            to="/settings/load-balancer-types"
+            class="bg-gray-500 text-white border border-black block px-2 py-2"
+            >Load Balancer Types</router-link
           >
         </div>
       </div>
