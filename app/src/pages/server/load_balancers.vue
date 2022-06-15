@@ -14,17 +14,23 @@
       </h2>
       <div class="tw-table block border border-black">
         <div class="row grid grid-cols-12 bg-gray-300 font-bold px-2 py-2">
-          <div class="col col-span-12 md:col-span-2">
+          <div class="col col-span-12 md:col-span-1">
             {{ $t("general.id") }}
           </div>
           <div class="col col-span-12 md:col-span-2">
             {{ $t("general.name") }}
           </div>
-          <div class="col col-span-12 md:col-span-2">
+          <div class="col col-span-12 md:col-span-4">
             {{ $t("general.created") }}
           </div>
           <div class="col col-span-12 md:col-span-2">
             {{ $t("general.typ") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.location") }}
+          </div>
+          <div class="col col-span-12 md:col-span-2">
+            {{ $t("general.actions") }}
           </div>
         </div>
         <div
@@ -39,17 +45,23 @@
             :key="index"
             class="row grid grid-cols-12 px-2 py-2"
           >
-            <div class="col col-span-12 md:col-span-2">
+            <div class="col col-span-12 md:col-span-1">
               {{ typ.id }}
             </div>
             <div class="col col-span-12 md:col-span-2">
               {{ typ.name }}
             </div>
-            <div class="col col-span-12 md:col-span-2">
+            <div class="col col-span-12 md:col-span-4">
               {{ typ.created }}
             </div>
             <div class="col col-span-12 md:col-span-2">
               {{ typ.load_balancer_type.name }}
+            </div>
+            <div class="col col-span-12 md:col-span-2">
+              {{ typ.location.name }}
+            </div>
+            <div class="col col-span-12 md:col-span-1">
+              <button @click="remove(typ.id)"><fa icon="trash" /></button>
             </div>
           </div>
         </div>
@@ -66,6 +78,12 @@ export default {
   methods: {
     load: function () {
       this.$store.commit("load-balancers-load", this);
+    },
+    remove: function (id) {
+      this.$store.commit("load-balancers-remove", {
+        that: this,
+        id: id
+      });
     },
     add: function () {
       this.$router.push("/settings/load-balancer/add");

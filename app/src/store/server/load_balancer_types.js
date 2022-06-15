@@ -31,10 +31,11 @@ export default {
                 "load_balancer_types",
                 JSON.stringify(data.load_balancer_types)
               );
+              console.log('Load Balancer Types loaded');
             });
         }
       },
-      "load-balancer-add": function (state, that) {
+      "load-balancer-types-add": function (state, that) {
         if (that.$store.state.token.auth) {
           fetch("https://api.hetzner.cloud/v1/load_balancers", {
             method: 'POST',

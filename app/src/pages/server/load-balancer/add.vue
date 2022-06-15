@@ -9,11 +9,18 @@
 
       <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-4">
         <label class="font-bold block mb-2">Typ</label>
-        {{$store.state.load_balancers.items}}
-        {{this.$store.state.token.auth}}
         <select v-model="typ">
-          <option v-for="(lb, index) in $store.state.load_balancers.items">
-            {{ lb }}
+          <option v-for="(lb, index) in $store.state.load_balancer_types.items">
+            {{ lb.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group px-2 py-2 bg-gray-300 col-span-6 md:col-span-4">
+        <label class="font-bold block mb-2">Location</label>
+        <select v-model="location">
+          <option :value="lb.id" v-for="(lb, index) in $store.state.locations.items">
+            {{ lb.name }}
           </option>
         </select>
       </div>
@@ -38,6 +45,7 @@ export default {
     return {
       name: "",
       typ: "",
+      location: ""
     };
   },
   methods: {
@@ -54,7 +62,8 @@ export default {
       link: "/settings/load-balancers",
       label: "Load Balancer",
     });
-    this.$store.commit("load-balancers-load", this);
+    this.$store.commit("load-balancer-types-load", this);
+    this.$store.commit("locations-load", this);
   },
 };
 </script>

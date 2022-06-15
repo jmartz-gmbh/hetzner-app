@@ -9,7 +9,8 @@ export default {
         disk: "Disk",
         id: "Id",
         created: "Created",
-        typ: "typ",
+        typ: "Typ",
+        location: "Location"
         
       },
       server : {
@@ -27,6 +28,7 @@ export default {
         id: "Id",
         created: "Erstellt",
         typ: "Typ",
+        location: "Standort"
       },
       server: {
         loadbalancers: "Load-Balancer",
