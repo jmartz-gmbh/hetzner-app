@@ -1,6 +1,17 @@
 <template>
   <div class="vp-home">
     <div class="grid grid-cols-6">
+      <div class="col-span-6">
+        <!-- Homepage - Hetzner.app -->
+        <ins
+          class="adsbygoogle"
+          style="display: block"
+          data-ad-client="ca-pub-8008841377413395"
+          data-ad-slot="2136626795"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+      </div>
       <div class="col-span-6 md:col-span-3">
         <h2 class="text-lg font-bold text-center mt-5">Willkommen</h2>
         <p class="text-center">
